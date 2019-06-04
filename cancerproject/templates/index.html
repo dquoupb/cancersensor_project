@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Cancer-sensor9</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+   rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="{{url_for('static', filename='css/mdb.min.css')}}"
+   rel="stylesheet">
+<!-- Your custom styles (optional) -->
+<link href="{{url_for('static', filename='css/style.min.css')}}"
+   rel="stylesheet">
+<!-- 나눔 바른 고딕 웹 폰트 적용하기 -->
+<link rel="stylesheet"
+   href="//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css">
+<!--form -->
+<link href="{{url_for('static', filename='css/style2.css')}}"
+   rel="stylesheet">
+
+<style type="text/css">
+html, body, header, .carousel {
+   height: 100%;
+}
+
+@media ( min-width : 800px) and (max-width: 850px) {
+   .navbar:not(
+   .top-nav-collapse
+   )
+   {
+   background:#1C2331 !important;
+}
+
+}
+.hangul {
+   font-family: 'Nanum Barun Gothic' !important;
+}
+
+.elem {
+   margin-left: 7%;
+   margin-right: 25%;
+   display: flex;
+   align-items: flex-start;
+   padding-top: 5px;
+   margin-bottom: 10px;
+}
+
+.text {
+   margin-top: 35px;
+    margin-bottom: 25px;
+    margin-right: 5%;
+}
+
+.prevent_btn{
+   margin-top: -17px;
+}
+
+#loading {
+ width: 100%;  
+ height: 100%;  
+ top: 0px;
+ left: 0px;
+ position: fixed;  
+ display: block;  
+ opacity: 0.7;  
+ background-color: #F0E7F0;  
+ z-index: 99;  
+ text-align: center; } 
+  
+#loading-image {  
+ position: absolute;  
+ top: 50%;  
+ left: 50%; 
+ z-index: 100; }
+
+/*.navbar-collapse {
+  padding-right: 15px;
+  padding-left: 15px;
+  overflow-x: visible;
+  -webkit-overflow-scrolling: touch;
+  border-top: 1px solid transparent;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+.navbar-collapse.in {
+  overflow-y: auto;
+}
+  .navbar-collapse {
+    width: auto;
+    border-top: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .navbar-collapse.collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+    padding-right: 0;
+    padding-left: 0;
+    max-height: 340px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .navbar-collapse.in {
+    overflow-y: visible;
+  }
+
+.navbar-collapse:before,.navbar-collapse:after{
+  display: table;
+  content: " ";
+}
+
+.navbar-collapse:after{
+  clear: both;
+}*/
+ .wrap_image{width:25%; text-align:center; margin:0px auto;}
+
+</style>
+</head>
+
+<body>
+   <!-- Navbar -->
+   <nav
+      class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+      <div class="container">
+         <a class="navbar-brand" href="#" target="_blank"> <img
+            src="{{url_for('static', filename='img/logo.png')}}" width="150px"
+            height="55px">
+         </a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <!-- Links -->
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         </div>
+      </div>
+   </nav>
+   <!-- Navbar -->
+
+   <!--Carousel Wrapper-->
+   <div id="carousel-example-1z" class="carousel slide carousel-fade"
+      data-ride="carousel">
+
+      <!--Indicators-->
+      <!--     <ol class="carousel-indicators">
+      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+    </ol> -->
+      <!--/.Indicators-->
+
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+         <div class="carousel-item active">
+            <div class="view">
+               <img src="{{url_for('static', filename='img/header_bg.png')}}">
+               <div
+                  class="mask rgba-black-light d-flex justify-content-center align-items-center">
+                  <div class="text-center white-text mx-5 wow fadeIn">
+                     <h1 class="mb-4">
+                        <strong style="font-family: 'Nanum Barun Gothic'">cancer-sensor</strong>
+                               </h1>
+                               <hr>
+
+                     <p>
+                        <strong style="font-family: 'Nanum Barun Gothic'">7개의
+                           요인과 연관된 7대 암 발병률을 예측합니다.</strong>
+                               </p>
+                               
+                     <p class="mb-4 d-none d-md-block">
+                        <strong> 빅 데이터를 다변인 선형 회귀모델을 이용하여 암 발병률 예측을 수행합니다.</strong>
+                     </p>
+<!-- <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav"> -->
+                     <a class="btn btn-outline-white"
+             onclick="location.href='#future-data'" target="_blank"
+            role="button"><strong><h6>7대 암 예측하기</h6></strong>
+         </a>
+         <div class="wrap_image">
+           <img
+            src="{{url_for('static', filename='img/load.gif')}}" width="120px" height="100px">    
+          </div>
+        
+
+     </div> -->
+
+
+                  </div>
+               </div>
+               <!-- Mask & flexbox options-->
+
+            </div>
+         </div>
+         <!--/First slide-->
+
+      </div>
+      <!--/.Slides-->
+
+      <!--Controls-->
+      <!--     <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a> -->
+      <!--/.Controls-->
+
+   </div>
+   <!--/.Carousel Wrapper-->
+
+   <!--Main layout-->
+   <main>
+
+   <hr class="my-5">
+
+   <!--Section: Main features & Quick Start-->
+<div id="future-data">
+   <section>
+      <h3 class="h3 text-center mb-5"
+             style="font-family: 'Nanum Barun Gothic'" id="future-data">미래 데이터 예측해보기</h3>
+             <hr>
+      <div class="row wow fadeIn">
+         <div class="col-lg-6 col-md-12 px-4">
+            <div class="wrapper">
+               <div id="main" style="padding: 10px 0 0 0;">
+                  <!-- Form -->
+                  <form id="contact-form" name="contact-form" action="/"
+                     method="post">
+                     <div>
+                        <label><span> 이름 </span></label><input class="form-control"
+                           type="text" name="name" id="name" placeholder="이름을 입력해주세요.">
+                     </div>
+                     <div>
+                        <label><span>나이 </span> </label> <br> <select name="age">
+                           <option value="1">18-29세</option>
+                           <option value="2">30-34세</option>
+                           <option value="3">35-39세</option>
+                           <option value="4">40-44세</option>
+                           <option value="5">45-49세</option>
+                           <option value="6">50-54세</option>
+                           <option value="7">55-59세</option>
+                           <option value="8">60-64세</option>
+                           <option value="9">65-69세</option>
+                           <option value="10">70-74세</option>
+                           <option value="11">75-79세</option>
+                           <option value="12">80-84세</option>
+                           <option value="13">85세이상</option>
+                        </select>
+                     </div>
+                     <div>
+                        <label> <span>성별</span>
+                        </label> <br> 남성<input type="radio" name="sex" value="0" />&nbsp;여성
+                        <input type="radio" name="sex" value="1" />
+                     </div>
+                     <div>
+                        <label> <span>신장</span>
+                        </label> <input class="form-control" type="text" name="height"
+                           id="height" placeholder="신장을 입력해주세요(cm)">
+                     </div>
+                     <div>
+                        <label> <span>몸무게</span>
+                        </label> <input class="form-control" type="text" name="weight"
+                           id="weight" placeholder="몸무게를 입력해주세요(kg)">
+                     </div>
+
+                     <div>
+                        <label> <span>흡연여부</span>
+                        </label> <br> 그렇다<input type="radio"
+                           style="width: 10px; height: 10px; border: 1px;" name="smoking"
+                           value="0" />&nbsp;아니다<input type="radio" name="smoking"
+                           value="1" />&nbsp;끊었다<input type="radio" name="smoking"
+                           value="9" />
+                     </div>
+                     <div>
+                        <label> <span>음주여부</span>
+                        </label> <br>그렇다<input type="radio" name="alcohol" value="0" />&nbsp;아니다<input
+                           type="radio" name="alcohol" value="1" />&nbsp;끊었다<input
+                           type="radio" name="alcohol" value="9" />
+                     </div>
+                     <div>
+                        <label><span>가족력(중복가능)</span></label><br>위암 <input
+                           type="checkbox" name="family_history" value="0"> 갑상선암 <input
+                           type="checkbox" name="family_history" value="0"> 간암 <input
+                           type="checkbox" name="family_history" value="0">유방암 <input
+                           type="checkbox" name="family_history" value="0">폐암 <input
+                           type="checkbox" name="family_history" value="0">췌장암<input
+                           type="checkbox" name="family_history" value="0">대장암<input
+                           type="checkbox" name="family_history" value="0"><p>해당없음<input
+                           type="checkbox" name="family_history" value="0">
+                     </div>
+                     <div>
+                        <label><span>운동습관</span></label> <br>매일한다<input
+                           type="radio" name="exercise" value="4" />&nbsp;자주한다<input
+                           type="radio" name="exercise" value="1" />&nbsp;때때로 한다<input
+                           type="radio" name="exercise" value="9" />&nbsp;거의 안 한다<input
+                           type="radio" name="exercise" value="3" />&nbsp;안 한다<input
+                           type="radio" name="exercise" value="2" />
+                     </div>
+                     <br>
+                     <div>
+                        <button class="predict_btn" name="submit" type="submit" id="contact-submit">예측하기</button>
+                        <!-- <input name="submit" type="submit" id="contact-submit" value="예측하기"/> -->
+                     </div>
+                  </form>
+                  <!-- /Form -->
+               </div>
+            </div>
+                  </form>
+             </div>
+            
+         <div class="col-lg-6 col-md-12">
+            <p class="h5 text-center mb-4"
+               style="font-family: 'Nanum Barun Gothic'">
+               {% if status %}
+               <strong>{{name}}</strong>님의 {% endif %}
+             예측 결과(예상 발병률)</p>
+            <STRONG>{% if status %}
+               <div class="elem">
+                  <img class="img" src="{{url_for('static', filename='img/1.png')}}"
+                     width="146px" height="98px" /> <span class="text">
+                     <h5>
+                        <STRONG>{{status*100}}%</STRONG>
+                     </h5>
+                  </span>
+                  <div class="container2" id="portfolio" name="portfolio">
+                     <div class="col-md-4">
+                        <div class="grid mask">
+                           <figure>
+                              <a data-toggle="modal" href="#myModal1"> <img
+                                 class="img-responsive" src="img/modal/1.png" alt="">
+                              </a>
+                              <!-- <figcaption>
+                                  <button type="button" class="btn btn-primary"
+                                                      data-toggle="modal" data-target="#myModal1">예방 수칙</button> 
+                                             </figcaption> -->
+                                        </figure>
+                                    </div>
+                                 </div>
+                                 <!-------------------------------------------------------->
+                                 <figcaption class="prevent_btn">
+                                       <button type="button" class="btn btn-primary"
+                                          data-toggle="modal" data-target="#myModal1">예방 수칙</button> 
+                                 </figcaption>
+                                    <!-------------------------------------------------------->
+                  </div>
+               </div>
+
+               <div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+                  aria-labelledby="myModalLabel">
+                  <div class="modal-dialog modal-info" id="myModal" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h5 class="modal-title">
+                              <strong>위암을 예방할 수 있는 좋은 생활 습관</strong>
+                           </h5>
+                           <button type="button" class="close" data-dismiss="modal"
+                              aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                           <p>
+                              <img src="{{url_for('static', filename='img/modal/1.png')}}"
+                                 class="img-responsive" alt="" width="460px" height="250px">
+                           </p>
+                           <p>
+                              <strong>위암은 연령에 상관없이 발병하며, 환경적 요인이 큽니다. 때문에 예방을 위해서는
+                                 다음과 같은 생활 습관이 중요합니다.</strong> <br> <br> <strong>1.
+                                 짜게 먹지 않기</strong> <br> 과도한 나트륨 섭취는 위 점막을 손상시키고, 위축성 위염을 일으켜 위암의
+                              발생을 촉진시킵니다.<br> <strong>2. 음식물 냉장 보관</strong> <br>
+                              냉장 보관과 더불어 질산염이 들어있는 음식을 장기간 섭취하면 발병률이 높아지기 때문에, 가공식품의 섭취를 줄이는
+                              것이 좋습니다.<br> <br> <strong
+                                 style="color: rgb(18, 18, 228)";>좋은 음식</strong>: 양배추, 브로콜리,
+                              연근, 감자, 딸기<br> <strong style="color: red";>주의 음식</strong>:
+                              기름진 육류, 말린 어육류, 가공식품, 가당우유, 통조림
+                           </p>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-outline-info waves-effect"
+                              data-dismiss="modal">Close</button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            <!-- </STRONG> -->
+            {% endif %} {% if status2 %}
+            <div class="elem">
+               <img class="img" src="{{url_for('static', filename='img/2.png')}}"
+                  width="174px" height="98px"><span class="text">
+               <h5>
+                  <STRONG>{{status2*100}}% </STRONG>
+               </h5>
+               </span>
+               <div class="container2" id="portfolio" name="portfolio2">
+                  <div class="col-md-4">
+                     <div class="grid mask">
+                        <figure>
+                           <a data-toggle="modal" href="#myModal2"> <img
+                              class="img-responsive" src="img/modal/2.png" alt="">
+                           </a>
+                           
+                        </figure>
+                     </div>
+                           </div>
+                           <figcaption class="prevent_btn">
+                                 <button type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#myModal2">예방 수칙</button> 
+                           </figcaption>
+               </div>
+            </div>
+
+            <div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel">
+               <div class="modal-dialog modal-info" id="myModal2" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title">
+                           <strong>갑상선암을 예방할 수 있는 좋은 생활 습관</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                           aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <p>
+                           <img src="{{url_for('static', filename='img/modal/2.png')}}"
+                              class="img-responsive" alt="" width="460px" height="250px">
+                        </p>
+                        <p>
+                           <strong>갑상선암의 위험 요인으로 제시되는 요인은 다양하지만 방사선 노출, 특히 어릴 때의
+                              방사선 노출과 유전적 요인, 이전의 갑상선종이나 양성갑상선 결절 외에는 확실히 증명된 바가 없습니다. 따라서
+                              예방할 수 있는 방법은 알려진 요인을 피하거나 피할 수 없는 요인이 있는 경우 조기 발견하여 조기 치료하는
+                              것뿐입니다.</strong><br> <br> <strong>1. 가족력에 주의하기 </strong> <br>갑상선암에
+                           대한 가족력이 있는 경우에 주의해야 하며, 특히 갑상선수질암의 가족력이 있는 경우에는 환자가 있는 가계의 구성원
+                           모두를 대상으로 반드시 RET 유전자의 돌연변이 유무를 검사하여 이상이 있을 시 예방적 갑상선절제술을 시행하고
+                           다발성내분비종양증후군(Multiple Endocrine Neoplasia, MEN) 등의 여부를 확인해야 합니다.<br>
+                           <strong>2. 생활 습관 및 식습관에 유의하기</strong><br>갑상선암 예방을 위한 식생활과
+                           관련해서 특별히 위험 요인으로 알려진 것은 없으며 요오드 섭취와 십자화과 채소류 외에는 보호 요인으로 알려진 것도
+                           없습니다. 우리나라는 다시마, 김, 미역 등 요오드가 풍부한 해조류를 즐겨 먹는 식습관이 있어 요오드가 부족한
+                           경우는 드물며 십자화과 채소와 일반 채소에는 항산화 물질이 풍부하므로 골고루 섭취하는 것이 좋습니다. 또한 비만을
+                           피하기 위해 과식하지 않는 것이 좋고 적절한 운동을 하는 것이 갑상선암의 예방에 도움이 됩니다. <br>
+                           <br> <strong style="color: rgb(18, 18, 228)";>좋은
+                              음식</strong>: 해조류, 브라질너트, 참치, 정어리, 쇠고기, 닭고기, 사과, 감귤류, 호박씨, 굴, 게, 가재, 콩과
+                           식물, 요거트, 우유<br> <strong style="color: red";>주의 음식</strong>:
+                           밀가루, 호밀, 보리
+                        </p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info waves-effect"
+                           data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </STRONG> 
+            <STRONG>{% endif %} {% if status3 %}
+            <div class="elem">
+               <img class="img" src="{{url_for('static', filename='img/3.png')}}"
+                  width="146px" height="98px"> <span class="text">
+               <h5>
+                  <STRONG>[{{status3*100}}]% </STRONG>
+               </h5>
+            </span>
+               <div class="container2" id="portfolio" name="portfolio">
+                  <div class="col-md-4">
+                     <div class="grid mask">
+                        <figure>
+                           <a data-toggle="modal" href="#myModal3"> <img
+                              class="img-responsive" src="img/modal/3.png" alt="">
+                           </a>
+                           
+                        </figure>
+                     </div>
+                           </div>
+                           <figcaption class="prevent_btn">
+                                 <button type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#myModal3">예방 수칙</button> 
+                           </figcaption>
+               </div>
+            </div>
+
+            <div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel">
+               <div class="modal-dialog modal-info" id="myModal" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title">
+                           <strong>간암을 예방할 수 있는 좋은 생활 습관</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                           aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <p>
+                           <img src="{{url_for('static', filename='img/modal/3.png')}}"
+                              class="img-responsive" alt="" width="460px" height="250px">
+                        </p>
+                        <p>
+                           <strong>간암의 주원인은 만성 B형이나 C형 간염, 알코올성이나 지방간염, 간경화 등
+                              입니다. 간은 어느 정도 초기 손상 단계에서는 전혀 증상이 느껴지지 않고 증상이 생겨 간암으로 진단된 시기에는
+                              치료가 어려울 정도로 진행된 경우가 많습니다. 따라서 조기 발견과 예방이 중요합니다.</strong><br> <br>
+                           <strong>1. 정기 검진 받기 </strong> <br>간암 위험군에 드는 사람은 정기 검진을 통해
+                           위험 인자 발견과 치료, 또 간암의 조기 발견과 치료를 하는 것이 중요합니다. B형 간염 예방을 위해서는 간염
+                           백신을 맞아야 합니다. B형 바이러스 보균자는 항체가 생기지 않는데 이 경우에도 치료가 가능합니다. C형 간염은
+                           백신이 없고 감염자의 혈액을 통해 감염되기 때문에 면도기, 손톱깍기 등을 함께 쓰는 것을 피하는 등 평소 위생
+                           생활에 유의해야 합니다. <br> <strong>2. 식습관 및 생활 습관에 유의하기 </strong><br>간암을
+                           예방하기 위해서 지나친 음주는 삼가하고 흡연을 하지 않습니다. 우상복부 통증, 체중감소, 피로감 등 이상 징후가
+                           발견되면 의사와 상의해야 합니다.<br> <strong>3. 유산소 운동하기 </strong><br>조깅,
+                           수영, 등산 등 유산소 운동을 정기적으로 하면 혈액순환이 좋아져 간의 해독력이 좋아집니다.<br> <br>
+                           <strong style="color: rgb(18, 18, 228)";>좋은 음식</strong>: 쑥, 부추,
+                           양송이 버섯, 칡, 배추, 무, 마늘, 모시조개, 올리브유 <br> <strong
+                              style="color: red";>주의 음식</strong>: 술, 기름진 육류나 가공식품
+                        </p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info waves-effect"
+                           data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            </STRONG> 
+            <STRONG>{% endif %} {% if status4 %}
+            <div class="elem">
+               <img class="img" src="{{url_for('static', filename='img/4.png')}}"
+                  width="161px" height="98px"> <span class="text">
+               <h5>
+                  <STRONG>[{{status4*100}}]% </STRONG>
+               </h5>
+            </span>
+               <div class="container2" id="portfolio" name="portfolio">
+                  <div class="col-md-4">
+                     <div class="grid mask">
+                        <figure>
+                           <a data-toggle="modal" href="#myModal4"> <img
+                              class="img-responsive" src="img/modal/4.png" alt="">
+                           </a>
+                          
+                        </figure>
+                     </div>
+                           </div>
+                           <figcaption class="prevent_btn">
+                                 <button type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#myModal4">예방 수칙</button> 
+                           </figcaption>
+               </div>
+            </div>
+
+            <div class="modal fade" id="myModal4" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel">
+               <div class="modal-dialog modal-info" id="myModal" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title">
+                           <strong>유방암을 예방할 수 있는 좋은 생활 습관</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                           aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <p>
+                           <img src="{{url_for('static', filename='img/modal/4.png')}}"
+                              class="img-responsive" alt="" width="460px" height="250px">
+                        </p>
+                        <p>
+                           <strong>유방암은 유방에 발생하는 모든 악성 종양을 통틀어 말합니다. 유방에 비정상적인 세포 조직이
+                              계속 자라거나 다른 장기에 퍼지는 치명적인 병입니다. 현재까지 유방암 발병원인이 명확하게 규명된 상태는 아니기
+                              때문에 이에 대한 완전한 예방법이 존재하지 않으나 실생활에서 많이 언급 되는 몇 가지 유방암 위험도를 증가시키는
+                              위험인자를 피하는 것이 예방에 도움이 될 것입니다.</strong><br> <br> <strong>1.
+                              적절한 체중 유지하기</strong> <br>비만은 폐경 후 여성의 유방암 위험도를 증가시킵니다. 폐경 여성의 경우
+                           에스트로겐의 주된 공급원은 지방조직인데, 비만여성일수록 지방조직이 많고 따라서 에스트로겐의 수치도 높아져 유방암
+                           발생을 증가시킵니다. 따라서 적절한 체중을 유지하는 것이 중요합니다.<br> <strong>2.
+                              꾸준히 운동하기</strong> <br>운동과 같은 신체적 활동은 유방암, 특히 폐경 후 유방암 발생을 억제한다고 많은
+                           문헌에서 보고하고 있습니다. 정확한 원인은 규명되지 않았지만, 운동 자체가 체내 호르몬과 에너지 균형에 긍정적인
+                           역할을 하기 때문이라는 보고가 최근에 발표되었습니다. 아직 암을 예방하는 최소한의 운동 빈도, 기간, 강도 등은
+                           입증되지 않았으나, 일주일에 5회 이상 45~60분 정도 운동을 지속하면 유방암의 발생률을 줄일 수 있습니다. <br>
+                           <strong>3. 가족력에 유의하기</strong> <br>뚜렷한 가족력이 있거나 BRCA1 또는
+                           BRCA2와 같은 유전자 변이가 있어 유방암 발병위험도가 현격히 높은 여성들에 대해 타목시펜이나 랄록시펜과 같은
+                           약제를 투여해 예방하는 방법을 고려할 수 있습니다. 이 외에 예방적 유방절제수술과 같은 방법이 있지만 이는 담당
+                           의사와 충분히 상의한 후 결정하도록 합니다. <br> <br> <strong
+                              style="color: rgb(18, 18, 228)";>좋은 음식</strong>: 고구마, 당근, 호박, 귤, 청국장, 새우, 과일, 채소<br> <strong
+                              style="color: red";>주의 음식</strong>: 인스턴트 식품, 탄 음식, 술, 피자, 햄버거, 감자튀김
+                        </p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info waves-effect"
+                           data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </STRONG>
+            <STRONG> {% endif %} {% if status5 %}
+            <div class="elem">
+               <img class="img" src="{{url_for('static', filename='img/5.png')}}"
+                  width="146px" height="98px"> <span class="text">
+               <h5>
+                  <STRONG>[{{status5*100}}]% </STRONG>
+               </h5>
+            </span>
+               <div class="container2" id="portfolio" name="portfolio">
+                  <div class="col-md-4">
+                     <div class="grid mask">
+                        <figure>
+                           <a data-toggle="modal" href="#myModal5"> <img
+                              class="img-responsive" src="img/modal/1.png" alt="">
+                           </a>
+                         
+                        </figure>
+                     </div>
+                           </div>
+                           <figcaption class="prevent_btn">
+                                 <button type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#myModal5">예방 수칙</button> 
+                           </figcaption>
+               </div>
+            </div>
+
+            <div class="modal fade" id="myModal5" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel">
+               <div class="modal-dialog modal-info" id="myModal" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title">
+                           <strong>폐암을 예방할 수 있는 좋은 생활 습관</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                           aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <p>
+                           <img src="{{url_for('static', filename='img/modal/5.png')}}"
+                              class="img-responsive" alt="" width="460px" height="250px">
+                        </p>
+                        <p>
+                           <strong>폐암은 '조용한 암'이라고 불릴 정도로 자각증상이 거의 없어 이미 손을 쓸 수 없는
+                              상태까지 상황이 악화된 후에 병원을 찾는 사람이 많아 사망률이 높은 편입니다. 폐암의 가장 흔한 원인은 흡연이고
+                              그 외 다른 원인으로는 유전적 소인, 방사선, 석면, 공해, 간접흡연, 바이러스 등이 있습니다.</strong><br>
+                           <br> 폐암 예방법은 금연 외에는 확실하게 밝혀진 것이 아직 없습니다. 약 90%의 폐암이 금연으로
+                           예방 가능합니다. 또한 흡연을 하면 다른 발암물질에 노출될 때 상승작용을 합니다. 폐암 발생 가능성은 담배를 피운
+                           양과 기간에 비례해서 증가하고 담배를 끊은 이후에도 위험이 줄어드는 속도가 워낙 느려 최대 20년까지 위험도가
+                           원래 비흡연자보다 높습니다. 따라서 금연은 이르면 이를수록 좋습니다. <br> <br> <strong
+                              style="color: rgb(18, 18, 228)";>좋은 음식</strong>: 당근, 토마토, 호박,
+                           시금치, 피망, 쑥갓, 양배추, 김, 미역, 다시마, 브로콜리, 고구마, 마늘, 생강, 가지, 부추 <br>
+                           <strong style="color: red";>주의 음식</strong>: 닭고기, 돼지고기, 백미,
+                           태운음식, 튀김, 소금
+                        </p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info waves-effect"
+                           data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            </STRONG> 
+            <STRONG>{% endif %} {% if status6 %}
+            <div class="elem">
+               <img clas="img" src="{{url_for('static', filename='img/6.png')}}"
+                  width="160px" height="98px"> <span class="text">
+               <h5>
+                  <STRONG>[{{status6*100}}]% </STRONG>
+               </h5>
+            </span>
+               <div class="container2" id="portfolio" name="portfolio">
+                  <div class="col-md-4">
+                     <div class="grid mask">
+                        <figure>
+                           <a data-toggle="modal" href="#myModal6"> <img
+                              class="img-responsive" src="img/modal/6.png" alt="">
+                           </a>
+                        </figure>
+                     </div>
+                           </div>
+                           <figcaption class="prevent_btn">
+                                 <button type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#myModal6">예방 수칙</button> 
+                           </figcaption>
+               </div>
+            </div>
+
+            <div class="modal fade" id="myModal6" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel">
+               <div class="modal-dialog modal-info" id="myModal" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title">
+                           <strong>췌장암을 예방할 수 있는 좋은 생활 습관</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                           aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <p>
+                           <img src="{{url_for('static', filename='img/modal/6.png')}}"
+                              class="img-responsive" alt="" width="460px" height="250px">
+                        </p>
+                        <p>
+                           <strong>췌장암은 췌장에 생긴 암세포로 이루어진 종괴를 말합니다. 흔히, 40세 이상에서
+                              나타나며 여자보다는 남자에게 흔합니다. 국가암정보센터 통계에 따르면 환자의 5년 생존율이 10.8%로 매우 낮은
+                              암입니다. 장기위치상 조기발견이 쉽지 않고 원인이 불분명하며 초기 증상 또한 뚜렷하지 않습니다. 따라서 다음과
+                              같은 예방법이 중요합니다.</strong><br> <br> <strong>1. 비특이적인
+                              의심증상 숙지하기</strong><br> -황달=황달이 생기면 진한 갈색 소변 또는 붉은색 소변을 보게 된다. 황달이
+                           황달과 함께 열이 나면 막힌 담도에 염증이 발생했다는 신호다.<br> -체중감소=췌장암환자에게 흔한
+                           증상으로 이상적인 체중을 기준으로 10% 이상 체중이 감소된다. 췌장액분비감소로 인한 흡수장애와 식욕부진,
+                           통증으로 인한 음식물섭취저하, 췌장암의 간전이나 원격전이 등 여러 원인으로 생긴다.<br> -소화장애=
+                           암이 십이지장으로 흘러가는 소화액을 막으면 지방의 소화에 문제가 생긴다. 지방의 불완전한 소화는 대변색깔과 모양
+                           등에 변화를 일으킨다. 평소와 달리 물 위에 떠 있고 옅은 색의 기름진 다량의 변을 보게 되며 암세포가 위장으로
+                           퍼지면 식후의 불쾌한 통증, 구토, 오심을 경험하게 된다.<br> -당뇨병=전에 없던 당뇨병이 생기거나
+                           기존의 당뇨병이 악화되기도 하며 췌장염의 임상증상을 보이기도 한다. 당뇨병은 췌장암의 원인일 수도 있지만 결과로서
+                           생길 수도 있다. <br> <strong>2. 생활 습관 및 식습관에 유의하기</strong><br>
+                           금연은 췌장암 예방에 필수적이며 육류를 중심으로 하는 고지방, 고칼로리 식사와, 비만을 피하고, 과일과 채소를
+                           중심으로 하는 식생활 개선과 적당한 운동은 암을 예방하는 좋은 방법입니다.<br> <br> <strong
+                              style="color: rgb(18, 18, 228)";>좋은 음식</strong>: 마늘, 고구마, 녹색 잎
+                           채소, 버섯<br> <strong style="color: red";>주의 음식</strong>: 고단위
+                           탄수화물 음식, 당 함류가 높은 음식
+                        </p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info waves-effect"
+                           data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            </STRONG> 
+            <STRONG>{% endif %} {% if status9 %}
+            <div class="elem">
+               <img class="img" src="{{url_for('static', filename='img/9.png')}}"
+                  width="161px" height="98px"> <span class="text">
+               <h5>
+                  <STRONG>[{{status9*100}}]% </STRONG>
+               </h5>
+            </span>
+               <div class="container2" id="portfolio" name="portfolio">
+                  <div class="col-md-4">
+                     <div class="grid mask">
+                        <figure>
+                           <a data-toggle="modal" href="#myModal9"> <img
+                              class="img-responsive" src="img/modal/9.png" alt="">
+                           </a>
+                          
+                        </figure>
+                     </div>
+                           </div>
+                           <figcaption class="prevent_btn">
+                                 <button type="button" class="btn btn-primary"
+                                    data-toggle="modal" data-target="#myModal9">예방 수칙</button> 
+                           </figcaption>
+               </div>
+            </div>
+            <div class="modal fade" id="myModal9" tabindex="-1" role="dialog"
+               aria-labelledby="myModalLabel">
+               <div class="modal-dialog modal-info" id="myModal" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title">
+                           <strong>대장암을 예방할 수 있는 좋은 생활 습관</strong>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal"
+                           aria-hidden="true">&times;</button>
+                     </div>
+                     <div class="modal-body">
+                        <p>
+                           <img src="{{url_for('static', filename='img/modal/9.png')}}"
+                              class="img-responsive" alt="" width="460px" height="250px">
+                        </p>
+                        <p>
+                           <strong>대장암은 서구화된 식사, 과음, 운동 부족과 이로 인한 비만으로 발생합니다.
+                              대장암을 예방하기 위해서는 과식을 자제하고 적절한 체중을 유지하는 것이 중요합니다. 따라서 다음과 같은 생활
+                              습관이 필요합니다.</strong><br> <br> <strong>1. 당지수가 낮은 음식을
+                              섭취하기</strong><br> 당지수가 높은 식품일수록 혈당이 급격히 올라 2차적으로 대장암의 발병률이 높아지기
+                           때문입니다. 과일 또한 매일 적당량 먹되 당 지수가 높은 주스나 말린 과일 섭취를 지양해야 합니다.<br>
+                           <strong>2. 섬유소와 비타민을 충분히 보충하기</strong><br> 식이섬유는 사람의
+                           소화효소로는 소화되지 않고 몸 밖으로 배출돼 노폐물 배출에 도움을 줍니다. 따라서 채소, 버섯·해조류, 우유나
+                           멸치 등의 식품을 자주 섭취해야 합니다.<br> <strong>3. 정기적인 검진 받기</strong><br>
+                           대장암은 대장암의 씨앗인 용종에서 대부분 시작하기 때문에 용종이 작을 때 대장 내시경으로 조기에 발견해 제거하는
+                           것이 현재 가장 확실한 대장암 예방법입니다.<br> <br> <strong
+                              style="color: rgb(18, 18, 228)";>좋은 음식</strong>: 잡곡, 채소, 생선,
+                           붉은색 계통의 과일/채소, 마늘, 우유, 양베추, 시금치, 쑥 브로콜리, 검정콩<br> <strong
+                              style="color: red";>주의 음식</strong>: 육가공 식품, 튀김, 섬유질이 많은 질긴
+                           생채소와 건조된 채소
+                        </p>
+                     </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-info waves-effect"
+                           data-dismiss="modal">Close</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </STRONG> {% endif %}
+      </div>
+      </div>
+   </section>
+   </div>
+
+   </main>
+   <!--Main layout-->
+
+
+
+
+   <!--Footer-->
+   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+      <!-- Call to action-->
+      <div class="pt-4">
+         <a class="btn btn-outline-white"
+            href="https://github.com/ndb796/Vegita" target="_blank"
+            role="button">LET'S GO GITHUB <i
+            class="fa fa-graduation-cap ml-2"></i>
+         </a>
+      </div>
+      <!--/.Call to action -->
+
+      <hr class="my-4">
+
+      <!--Copyright-->
+      <div class="footer-copyright py-3">
+         © 2019 Copyright: <a href="https://blog.naver.com/ndb796"
+            target="_blank"> cancer-sensor </a>
+      </div>
+      <!--/.Copyright-->
+
+   </footer>
+   <!--/.Footer-->
+
+   <!-- SCRIPTS -->
+   <!-- JQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script type="text/javascript"
+      src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+   <!-- Bootstrap tooltips -->
+   <script type="text/javascript"
+      src="{{url_for('static', filename='js/popper.min.js')}}"></script>
+   <!-- Bootstrap core JavaScript -->
+   <script type="text/javascript"
+      src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+   <!-- MDB core JavaScript -->
+   <script type="text/javascript"
+      src="{{url_for('static', filename='js/mdb.min.js')}}"></script>
+   <!-- Initializations -->
+   <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+   <script type="text/javascript" src="{{url_for('static', filename='js/script.js')}}"></script>
+
+   <!--loading 이미지-->
+   <div id="loading">
+       <img id="loading-image" src="{{url_for('static', filename='img/loading.gif')}}" alt="loading">
+    </div>
+    <script src="https://code.jquery.com/jquery-1.8.0.js" integrity="sha256-00Fh8tkPAe+EmVaHFpD+HovxWk7b97qwqVi7nLvjdgs=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function() { 
+      $("#loading").hide();
+      $('#loading-image').hide();
+
+        $('.predict_btn').click(function(){ 
+            $("#loading").show();
+           $('#loading-image').show();
+            });
+}); 
+
+
+            
+</script> 
+   
+
+
+</body>
+
+</html>
